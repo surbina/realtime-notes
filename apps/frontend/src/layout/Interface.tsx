@@ -1,24 +1,39 @@
-import React from 'react'
-import { Toolbar, Typography, Drawer, Divider, Box, Container } from '@mui/material'
-import { NotesList } from '../notes'
+import { ReactNode } from "react";
+import {
+  Toolbar,
+  Typography,
+  Drawer,
+  Divider,
+  Box,
+  Container,
+} from "@mui/material";
+import { NotesList } from "../notes";
+import { useRouter } from "next/router";
 
-const drawerWidth = 240
+const drawerWidth = 240;
 
 interface InterfaceProps {
-  activeNoteId?: string
+  children?: ReactNode;
 }
 
-const Interface: React.FC<InterfaceProps> = ({ activeNoteId, children }) => {
+const Interface = ({ children }: InterfaceProps) => {
+  const router = useRouter();
+  const { id } = router.query;
+  const activeNoteId = String(id);
+
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Drawer variant="permanent" sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
+    <Box sx={{ display: "flex" }}>
+      <Drawer
+        variant="permanent"
+        sx={{
           width: drawerWidth,
-          boxSizing: 'border-box',
-        },
-      }}>
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
+        }}
+      >
         <Toolbar>
           <Typography
             component="h1"
@@ -39,9 +54,9 @@ const Interface: React.FC<InterfaceProps> = ({ activeNoteId, children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          height: '100vh',
-          backgroundColor: '#eee',
-          overflow: 'auto',
+          height: "100vh",
+          backgroundColor: "#eee",
+          overflow: "auto",
         }}
       >
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -49,7 +64,7 @@ const Interface: React.FC<InterfaceProps> = ({ activeNoteId, children }) => {
         </Container>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Interface
+export default Interface;

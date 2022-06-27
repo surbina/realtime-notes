@@ -15,5 +15,14 @@
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["apps/frontend/**/*.tsx"],
+      "rules": {
+        "react/react-in-jsx-scope": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0
+      }
+    }
+  ]
 }

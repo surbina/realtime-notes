@@ -1,6 +1,8 @@
-import Head from 'next/head'
-import type { AppProps } from 'next/app'
-import CssBaseline from '@mui/material/CssBaseline'
+import Head from "next/head";
+import type { AppProps } from "next/app";
+import CssBaseline from "@mui/material/CssBaseline";
+
+import { Interface } from "../layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,10 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
+        <title>Editor Project</title>
       </Head>
       <CssBaseline />
-      <Component {...pageProps} />
+      <Interface>
+        <Component {...pageProps} />
+      </Interface>
     </>
-  )
+  );
 }
-export default MyApp
+export default MyApp;
