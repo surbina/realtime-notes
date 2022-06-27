@@ -1,19 +1,35 @@
-import express from "express";
-import cors from "cors";
-import expressWs from "express-ws";
+import { Logger } from "@hocuspocus/extension-logger";
+import { SQLite } from "@hocuspocus/extension-sqlite";
+import { Server } from "@hocuspocus/server";
+import { slateNodesToInsertDelta } from "@slate-yjs/core";
+import * as Y from "yjs";
+import initialValue from "./data/initialValue.json";
 
-import apiRoutes from "./routes";
+// Minimal hocuspocus server setup with logging. For more in-depth examples
+// take a look at: https://github.com/ueberdosis/hocuspocus/tree/main/demos/backend
+const server = Server.configure({
+  port: parseInt(process.env.PORT ?? "", 10) || 3001,
 
-const app = express();
-const PORT = 3001;
-expressWs(app);
+  extensions: [
+    new Logger(),
+    new SQLite({
+      database: "db.sqlite",
+    }),
+  ],
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+  async onLoadDocument(data) {
+    if (data.document.isEmpty("content")) {
+      const insertDelta = slateNodesToInsertDelta(initialValue);
+      const sharedRoot = data.document.get(
+        "content",
+        Y.XmlText
+      ) as unknown as Y.XmlText;
+      sharedRoot.applyDelta(insertDelta);
+    }
 
-app.use("/api", apiRoutes);
-
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+    return data.document;
+  },
 });
+
+server.enableMessageLogging();
+server.listen();

@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# YJS local db
+db.sqlite
