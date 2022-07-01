@@ -29,5 +29,4 @@ export const RemoteCursorOverlayWrapper = styled.div({
   position: "relative",
   display: "flex",
   justifyContent: "center",
-  margin: "8rem 2.5rem",
 });

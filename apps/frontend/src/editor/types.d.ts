@@ -9,9 +9,25 @@ export type CursorData = {
 
 interface CustomText extends BaseText {
   bold?: boolean;
+  code?: boolean;
   italic?: boolean;
   underline?: boolean;
-  strikethrough?: boolean;
+}
+
+export interface BlockQuote extends BaseElement {
+  type: "block-quote";
+}
+
+export interface BulletedList extends BaseElement {
+  type: "bulleted-list";
+}
+
+export interface NumberedList extends BaseElement {
+  type: "numbered-list";
+}
+
+export interface ListItem extends BaseElement {
+  type: "list-item";
 }
 
 export interface H1 extends BaseElement {
@@ -22,15 +38,18 @@ export interface H2 extends BaseElement {
   type: "heading-two";
 }
 
-export interface InlineCode extends BaseElement {
-  type: "inline-code";
+export interface Paragraph extends BaseElement {
+  type: "paragraph";
 }
 
-export interface BlockQuote extends BaseElement {
-  type: "block-quote";
-}
-
-export type CustomElement = H1 | H2 | InlineCode | BlockQuote;
+export type CustomElement =
+  | BlockQuote
+  | BulletedList
+  | NumberedList
+  | ListItem
+  | H1
+  | H2
+  | Paragraph;
 
 declare module "slate" {
   interface CustomTypes {

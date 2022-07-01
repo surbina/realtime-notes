@@ -3,7 +3,7 @@ import {
   CursorOverlayState,
   useRemoteCursorOverlayPositions,
 } from "@slate-yjs/react";
-import React, { CSSProperties, PropsWithChildren, useRef } from "react";
+import { CSSProperties, PropsWithChildren, useRef } from "react";
 import { CursorData } from "../types";
 import {
   CaretWrapper,
@@ -50,7 +50,7 @@ function RemoteSelection({
   };
 
   return (
-    <React.Fragment>
+    <>
       {selectionRects.map((position, i) => (
         <RemoteSelectionContent
           style={{ ...selectionStyle, ...position }}
@@ -59,7 +59,7 @@ function RemoteSelection({
         />
       ))}
       {caretPosition && <Caret position={caretPosition} data={data} />}
-    </React.Fragment>
+    </>
   );
 }
 

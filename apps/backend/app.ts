@@ -1,9 +1,10 @@
+import { Node } from "slate";
 import { Logger } from "@hocuspocus/extension-logger";
-import { SQLite } from "@hocuspocus/extension-sqlite";
 import { Server } from "@hocuspocus/server";
 import { slateNodesToInsertDelta } from "@slate-yjs/core";
 import * as Y from "yjs";
-import initialValue from "./data/initialValue.json";
+import { FirestoreExtension } from "./extensions/firestore";
+import firestore from "./firebase";
 
 // Minimal hocuspocus server setup with logging. For more in-depth examples
 // take a look at: https://github.com/ueberdosis/hocuspocus/tree/main/demos/backend
@@ -12,14 +13,19 @@ const server = Server.configure({
 
   extensions: [
     new Logger(),
-    new SQLite({
-      database: "db.sqlite",
+    new FirestoreExtension({
+      firestore,
     }),
   ],
 
   async onLoadDocument(data) {
     if (data.document.isEmpty("content")) {
-      const insertDelta = slateNodesToInsertDelta(initialValue);
+      const insertDelta = slateNodesToInsertDelta([
+        {
+          type: "paragraph",
+          children: [{ text: "" }],
+        } as Node,
+      ]);
       const sharedRoot = data.document.get(
         "content",
         Y.XmlText

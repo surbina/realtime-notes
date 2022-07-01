@@ -1,38 +1,32 @@
 import React from "react";
-import Link from "next/link";
-import {
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import { Assignment as AssignmentIcon } from "@mui/icons-material";
+import { List } from "@mui/material";
+import { useNotesList } from "./useNotesList";
+import { NoteItem } from "./NoteItem";
+import { Note } from "./types";
+import { CreateNoteItem } from "./CreateNoteItem";
 
-interface NotesListProps {
+export interface NotesListProps {
   activeNoteId?: string;
+  initialNotes: Array<Note>;
 }
 
-const NotesList: React.FC<NotesListProps> = ({ activeNoteId }) => {
-  // const { notesList } = useNotesList()
-  const notesList = [
-    {
-      id: "slate-yjs-demo",
-      title: "Test note",
-    },
-  ];
+const NotesList: React.FC<NotesListProps> = ({
+  activeNoteId,
+  initialNotes,
+}) => {
+  const notesList = useNotesList(initialNotes);
 
   return (
     <List>
       {notesList?.map((note) => (
-        <Link href={`/notes/${note.id}`} key={note.id}>
-          <ListItemButton selected={note.id === activeNoteId}>
-            <ListItemIcon>
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary={note.title} />
-          </ListItemButton>
-        </Link>
+        <NoteItem
+          key={note.name}
+          id={note.name}
+          title={note.title}
+          isActive={note.name === activeNoteId}
+        />
       ))}
+      <CreateNoteItem />
     </List>
   );
 };

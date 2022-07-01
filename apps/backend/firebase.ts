@@ -1,11 +1,18 @@
-import admin from 'firebase-admin'
+import admin from "firebase-admin";
 
-// Replace this file with your service account key you get when setting up a firestore.
-import serviceAccount from './serviceAccountKey.json'
+const {
+  project_id: projectId,
+  private_key: privateKey,
+  client_email: clientEmail,
+} = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT as string);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://databaseName.firebaseio.com"
-})
+  credential: admin.credential.cert({
+    projectId,
+    privateKey,
+    clientEmail,
+  }),
+  databaseURL: "https://databaseName.firebaseio.com",
+});
 
-export default admin.firestore()
+export default admin.firestore();

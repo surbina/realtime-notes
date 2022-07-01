@@ -1,8 +1,11 @@
 import Head from "next/head";
+import App, { AppContext } from "next/app";
 import type { AppProps } from "next/app";
 import CssBaseline from "@mui/material/CssBaseline";
+import { collection, query, getDocs, orderBy } from "firebase/firestore";
 
-import { Interface } from "../layout";
+import { firestore } from "../firebase";
+import { Interface, Note } from "../layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,10 +23,32 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Editor Project</title>
       </Head>
       <CssBaseline />
-      <Interface>
+      <Interface initialNotes={pageProps.initialNotes}>
         <Component {...pageProps} />
       </Interface>
     </>
   );
 }
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  const q = query(
+    collection(firestore, "documents"),
+    orderBy("timestamp", "desc")
+  );
+  const querySnapshot = await getDocs(q);
+  const initialNotes: Array<Note> = [];
+
+  querySnapshot.forEach((doc) => {
+    const { name, title } = doc.data();
+    initialNotes.push({ name, title });
+  });
+
+  return {
+    ...appProps,
+    pageProps: { ...appProps.pageProps, initialNotes },
+  };
+};
+
 export default MyApp;

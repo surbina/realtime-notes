@@ -2,12 +2,8 @@
   "extends": "../../tsconfig",
   "compilerOptions": {
     "module": "commonjs",
+    "target": "ES6"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

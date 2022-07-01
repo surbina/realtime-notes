@@ -7,16 +7,17 @@ import {
   Box,
   Container,
 } from "@mui/material";
-import { NotesList } from "../notes";
+import { NotesList, Note } from "../notes";
 import { useRouter } from "next/router";
 
 const drawerWidth = 240;
 
 interface InterfaceProps {
   children?: ReactNode;
+  initialNotes: Array<Note>;
 }
 
-const Interface = ({ children }: InterfaceProps) => {
+const Interface = ({ children, initialNotes }: InterfaceProps) => {
   const router = useRouter();
   const { id } = router.query;
   const activeNoteId = String(id);
@@ -46,7 +47,7 @@ const Interface = ({ children }: InterfaceProps) => {
           </Typography>
         </Toolbar>
         <Divider />
-        <NotesList activeNoteId={activeNoteId} />
+        <NotesList activeNoteId={activeNoteId} initialNotes={initialNotes} />
         <Divider />
       </Drawer>
 
