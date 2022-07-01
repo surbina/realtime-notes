@@ -17,8 +17,8 @@
     "@hocuspocus/server": "^1.0.0-alpha.103",
     "@slate-yjs/core": "^0.2.6",
     "firebase-admin": "^11.0.0",
-    "slate": "^0.81.0",
-    "yjs": "^13.5.38"
+    "slate": "^0.81.1",
+    "yjs": "^13.5.39"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",

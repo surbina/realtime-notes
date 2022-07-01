@@ -1,3 +1,5 @@
+// @refresh reset // Fixes hot refresh errors in development https://github.com/ianstormtaylor/slate/issues/3477
+
 import { HocuspocusProvider } from "@hocuspocus/provider";
 import { withCursors, withYHistory, withYjs, YjsEditor } from "@slate-yjs/core";
 import randomColor from "randomcolor";
@@ -9,11 +11,12 @@ import * as Y from "yjs";
 import { faker } from "@faker-js/faker";
 import { Paper, CircularProgress } from "@mui/material";
 import { ClassNames } from "@emotion/react";
-// import { FormatToolbar } from "./FormatToolbar/FormatToolbar";
 import { Element } from "./Element";
 import { Leaf } from "./Leaf";
 import { RemoteCursorOverlay } from "./RemoteCursorOverlay";
 import { CursorData } from "./types";
+import { Toolbar } from "./Toolbar";
+import { handleHotkeys } from "./helpers";
 
 const cursorData: CursorData = {
   color: randomColor({
@@ -70,23 +73,26 @@ const EditorContent = ({ instance }: EditorContentProps) => {
         {isLoading ? (
           <CircularProgress />
         ) : (
-          <RemoteCursorOverlay>
-            {/* <FormatToolbar /> */}
-            <ClassNames>
-              {({ css }) => (
-                <Editable
-                  placeholder="This is the beginning of something awesome ..."
-                  className={css`
-                    flex-direction: column;
-                    overflow-wrap: break-word;
-                    min-width: 400px;
-                  `}
-                  renderElement={Element}
-                  renderLeaf={Leaf}
-                />
-              )}
-            </ClassNames>
-          </RemoteCursorOverlay>
+          <>
+            <Toolbar />
+            <RemoteCursorOverlay>
+              <ClassNames>
+                {({ css }) => (
+                  <Editable
+                    onKeyDown={handleHotkeys(editor)}
+                    placeholder="This is the beginning of something awesome ..."
+                    className={css`
+                      flex-direction: column;
+                      overflow-wrap: break-word;
+                      min-width: 400px;
+                    `}
+                    renderElement={Element}
+                    renderLeaf={Leaf}
+                  />
+                )}
+              </ClassNames>
+            </RemoteCursorOverlay>
+          </>
         )}
       </Slate>
     </Paper>
