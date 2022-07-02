@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import { TextFormatButtonGroup } from "./TextFormatButtonGroup";
 import { HeadingFormatButtonGroup } from "./HeadingFormatButtonGroup";
 import { BlockFormatButtonGroup } from "./BlockFormatButtonGroup";
+import { LinkButtonGroup } from "./LinkButtonGroup";
 import {
   CustomText,
   H1,
@@ -18,6 +19,12 @@ import {
   toggleMark,
   toggleBlock,
 } from "../helpers";
+import {
+  isLinkActive,
+  insertLink,
+  unwrapLink,
+  selectCurrentActiveLink,
+} from "../withLinks";
 
 type HeadingType = H1 | H2;
 
@@ -112,6 +119,20 @@ export function Toolbar() {
     });
   };
 
+  const handleSelectLink = () => {
+    selectCurrentActiveLink(editor);
+  };
+
+  const handleInsertLink = (url: string) => {
+    insertLink(editor, url);
+  };
+
+  const handleRemoveLink = () => {
+    if (isLinkActive(editor)) {
+      unwrapLink(editor);
+    }
+  };
+
   return (
     <Paper
       elevation={2}
@@ -137,6 +158,13 @@ export function Toolbar() {
       <BlockFormatButtonGroup
         blockFormats={currentBlockFormats}
         onChange={handleBlockFormatChange}
+      />
+      <ToolbarDivider />
+      <LinkButtonGroup
+        isLinkActive={isLinkActive(editor)}
+        onSelectLink={handleSelectLink}
+        onAddLink={handleInsertLink}
+        onRemoveLink={handleRemoveLink}
       />
     </Paper>
   );

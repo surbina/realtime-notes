@@ -42,6 +42,12 @@ export const deserialize = (el: Node): any => {
     return jsx("element", { type: "bulleted-list" }, children);
   } else if (nodeName === "P") {
     return jsx("element", { type: "paragraph" }, children);
+  } else if (nodeName === "A") {
+    return jsx(
+      "element",
+      { type: "link", url: (el as HTMLElement).getAttribute("href") },
+      children
+    );
   } else if (nodeName === "EM") {
     return children.map((child) => jsx("text", { italic: true }, child));
   } else if (nodeName === "I") {

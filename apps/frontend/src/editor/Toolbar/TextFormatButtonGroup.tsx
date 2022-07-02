@@ -4,6 +4,7 @@ import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
 import FormatCodeIcon from "@mui/icons-material/Code";
 import ToggleButton from "@mui/material/ToggleButton";
+import Tooltip from "@mui/material/Tooltip";
 import { ButtonGroup } from "./ButtonGroup";
 import { CustomText } from "../types";
 
@@ -32,34 +33,42 @@ export function TextFormatButtonGroup({
       onChange={handleTextFormatChange}
       aria-label="Text formatting"
     >
-      <ToggleButton
-        value="bold"
-        aria-label="bold"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatBoldIcon />
-      </ToggleButton>
-      <ToggleButton
-        value="italic"
-        aria-label="italic"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatItalicIcon />
-      </ToggleButton>
-      <ToggleButton
-        value="underline"
-        aria-label="underlined"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatUnderlinedIcon />
-      </ToggleButton>
-      <ToggleButton
-        value="code"
-        aria-label="code"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatCodeIcon />
-      </ToggleButton>
+      <Tooltip title="Bold">
+        <ToggleButton
+          value="bold"
+          aria-label="bold"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatBoldIcon />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Italic">
+        <ToggleButton
+          value="italic"
+          aria-label="italic"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatItalicIcon />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Underline">
+        <ToggleButton
+          value="underline"
+          aria-label="underlined"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatUnderlinedIcon />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Code">
+        <ToggleButton
+          value="code"
+          aria-label="code"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatCodeIcon />
+        </ToggleButton>
+      </Tooltip>
     </ButtonGroup>
   );
 }

@@ -10,7 +10,7 @@ export const toggleBlock = (
   format: CustomElement["type"]
 ): void => {
   const isActive = isBlockActive(editor, format);
-  const isList = LIST_TYPES.includes(format);
+  const isList = format === "numbered-list" || format === "bulleted-list";
 
   Transforms.unwrapNodes(editor, {
     match: (n) =>
@@ -24,7 +24,7 @@ export const toggleBlock = (
   };
   Transforms.setNodes(editor, newProperties);
 
-  if (!isActive && isList) {
+  if (!isActive && (format === "numbered-list" || format === "bulleted-list")) {
     const block = { type: format, children: [] };
     Transforms.wrapNodes(editor, block);
   }
@@ -57,7 +57,12 @@ export const isMarkActive = (
   format: keyof CustomText
 ): boolean => {
   const marks = Editor.marks(editor);
-  return marks ? format in marks === true : false;
+
+  if (format === "text") {
+    return false;
+  }
+
+  return marks ? !!marks[format] : false;
 };
 
 const HOTKEYS: Record<string, keyof CustomText> = {

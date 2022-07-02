@@ -1,4 +1,4 @@
-import { BaseEditor, BaseText, BaseElement } from "slate";
+import { BaseEditor, BaseText, BaseElement, Descendant } from "slate";
 import { ReactEditor } from "slate-react";
 import { YjsEditor } from "@slate-yjs/core";
 
@@ -42,6 +42,12 @@ export interface Paragraph extends BaseElement {
   type: "paragraph";
 }
 
+export interface Link extends BaseElement {
+  type: "link";
+  url: string;
+  children: Descendant[];
+}
+
 export type CustomElement =
   | BlockQuote
   | BulletedList
@@ -49,7 +55,8 @@ export type CustomElement =
   | ListItem
   | H1
   | H2
-  | Paragraph;
+  | Paragraph
+  | Link;
 
 declare module "slate" {
   interface CustomTypes {

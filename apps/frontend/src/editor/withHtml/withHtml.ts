@@ -2,11 +2,9 @@ import { Editor, Transforms } from "slate";
 import { deserialize } from "./deserialize";
 
 export const withHtml = (editor: Editor): Editor => {
-  const { insertData } = editor;
+  const { insertData, isInline } = editor;
 
-  // editor.isInline = (element) => {
-  //   return element.type === "link" ? true : isInline(element);
-  // };
+  editor.isInline = (element) => element.type === "link" || isInline(element);
 
   editor.insertData = (data) => {
     const html = data.getData("text/html");

@@ -3,6 +3,7 @@ import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import ToggleButton from "@mui/material/ToggleButton";
+import Tooltip from "@mui/material/Tooltip";
 import { ButtonGroup } from "./ButtonGroup";
 import { BlockQuote, NumberedList, BulletedList } from "../types";
 
@@ -33,27 +34,33 @@ export function BlockFormatButtonGroup({
       onChange={handleBlockFormatChange}
       aria-label="Block formatting"
     >
-      <ToggleButton
-        value="block-quote"
-        aria-label="block quote"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatQuoteIcon />
-      </ToggleButton>
-      <ToggleButton
-        value="numbered-list"
-        aria-label="numbered list"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatListNumberedIcon />
-      </ToggleButton>
-      <ToggleButton
-        value="bulleted-list"
-        aria-label="bulleted list"
-        onMouseDown={handleMouseDown}
-      >
-        <FormatListBulletedIcon />
-      </ToggleButton>
+      <Tooltip title="Quote">
+        <ToggleButton
+          value="block-quote"
+          aria-label="block quote"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatQuoteIcon />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Numbered list">
+        <ToggleButton
+          value="numbered-list"
+          aria-label="numbered list"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatListNumberedIcon />
+        </ToggleButton>
+      </Tooltip>
+      <Tooltip title="Bulleted list">
+        <ToggleButton
+          value="bulleted-list"
+          aria-label="bulleted list"
+          onMouseDown={handleMouseDown}
+        >
+          <FormatListBulletedIcon />
+        </ToggleButton>
+      </Tooltip>
     </ButtonGroup>
   );
 }

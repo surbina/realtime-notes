@@ -18,6 +18,7 @@ import { CursorData } from "./types";
 import { Toolbar } from "./Toolbar";
 import { handleHotkeys } from "./helpers";
 import { withHtml } from "./withHtml";
+import { withLinks } from "./withLinks";
 
 const cursorData: CursorData = {
   color: randomColor({
@@ -39,14 +40,16 @@ const EditorContent = ({ instance }: EditorContentProps) => {
     const sharedType = instance.document.get("content", Y.XmlText) as Y.XmlText;
 
     return withHtml(
-      withReact(
-        withYHistory(
-          withCursors(
-            withYjs(createEditor(), sharedType, { autoConnect: false }),
-            instance.awareness,
-            {
-              data: cursorData,
-            }
+      withLinks(
+        withReact(
+          withYHistory(
+            withCursors(
+              withYjs(createEditor(), sharedType, { autoConnect: false }),
+              instance.awareness,
+              {
+                data: cursorData,
+              }
+            )
           )
         )
       )
