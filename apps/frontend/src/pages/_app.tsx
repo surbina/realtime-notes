@@ -6,6 +6,7 @@ import { collection, query, getDocs, orderBy } from "firebase/firestore";
 
 import { firestore } from "../firebase";
 import { Interface, Note } from "../layout";
+import { COLLECTION_NAME } from "../constants";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -34,7 +35,7 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
 
   const q = query(
-    collection(firestore, "documents"),
+    collection(firestore, COLLECTION_NAME),
     orderBy("timestamp", "desc")
   );
   const querySnapshot = await getDocs(q);

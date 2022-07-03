@@ -17,17 +17,19 @@ const NotesList: React.FC<NotesListProps> = ({
   const notesList = useNotesList(initialNotes);
 
   return (
-    <List>
-      {notesList?.map((note) => (
-        <NoteItem
-          key={note.name}
-          id={note.name}
-          title={note.title}
-          isActive={note.name === activeNoteId}
-        />
-      ))}
-      <CreateNoteItem />
-    </List>
+    <nav>
+      <List>
+        {notesList?.map((note) => (
+          <NoteItem
+            key={note.name}
+            id={note.name}
+            title={note.title}
+            isActive={note.name === activeNoteId}
+          />
+        ))}
+        <CreateNoteItem />
+      </List>
+    </nav>
   );
 };
 

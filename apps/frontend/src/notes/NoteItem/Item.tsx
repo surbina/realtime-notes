@@ -25,7 +25,7 @@ export function Item({ id, title, isActive, onEdit }: ItemProps) {
         secondaryAction={
           <IconButton
             edge="end"
-            aria-label="comments"
+            aria-label={`edit ${title} title`}
             onClick={(e) => {
               e.preventDefault();
               onEdit();

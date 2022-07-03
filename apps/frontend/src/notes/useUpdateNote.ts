@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
+import { COLLECTION_NAME } from "../constants";
 import { Note, NetworkStatus } from "./types";
 
 interface UseUpdateNote {
@@ -17,7 +18,7 @@ export function useUpdateNote(): UseUpdateNote {
     setStatus(NetworkStatus.PROCESSING);
 
     try {
-      await updateDoc(doc(firestore, "documents", note.name), note);
+      await updateDoc(doc(firestore, COLLECTION_NAME, note.name), note);
 
       setStatus(NetworkStatus.IDLE);
     } catch {

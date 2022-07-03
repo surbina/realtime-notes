@@ -9,7 +9,7 @@ import firestore from "./firebase";
 // Minimal hocuspocus server setup with logging. For more in-depth examples
 // take a look at: https://github.com/ueberdosis/hocuspocus/tree/main/demos/backend
 const server = Server.configure({
-  port: parseInt(process.env.PORT ?? "", 10) || 3001,
+  port: parseInt(process.env.NEXT_PUBLIC_API_PORT ?? "", 10) || 3001,
 
   extensions: [
     new Logger(),

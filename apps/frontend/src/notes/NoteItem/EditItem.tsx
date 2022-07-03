@@ -3,7 +3,7 @@ import { ListItem, TextField, IconButton, Box } from "@mui/material";
 import { Done as DoneIcon, Close as CloseIcon } from "@mui/icons-material";
 
 interface FormElements extends HTMLFormControlsCollection {
-  noteTitle: HTMLInputElement;
+  editNoteTitle: HTMLInputElement;
 }
 interface NoteFormElement extends HTMLFormElement {
   readonly elements: FormElements;
@@ -30,7 +30,7 @@ export function EditItem({
     event
   ) => {
     event.preventDefault();
-    const title = event.currentTarget.elements.noteTitle.value.trim();
+    const title = event.currentTarget.elements.editNoteTitle.value.trim();
 
     if (!title) {
       return;
@@ -54,8 +54,8 @@ export function EditItem({
         onSubmit={handleSubmit}
       >
         <TextField
-          id="note-title"
-          name="noteTitle"
+          id="edit-note-title"
+          name="editNoteTitle"
           variant="standard"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -63,7 +63,7 @@ export function EditItem({
           autoFocus
         />
         <IconButton
-          aria-label="edit title"
+          aria-label={`edit ${initialTitle} title`}
           component="button"
           type="submit"
           disabled={isUpdating}

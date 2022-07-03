@@ -32,7 +32,7 @@ export class FirestoreExtension extends Database {
 
       return docRef?.update({ data: state });
     },
-    collection: "documents",
+    collection: process.env.NEXT_PUBLIC_ENVIRONMENT as string,
   };
 
   constructor(

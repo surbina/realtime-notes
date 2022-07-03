@@ -1,10 +1,12 @@
 import Router from "next/router";
 import type { NextPage, NextPageContext } from "next";
 import { useRouter } from "next/router";
+import { doc, getDoc } from "firebase/firestore";
+
+import { COLLECTION_NAME } from "../../constants";
 import { useHocuspocus } from "../../useHocuspocus";
 import { Editor } from "../../editor";
 import { firestore } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -18,7 +20,7 @@ export async function getServerSideProps({
   res,
   query: { id },
 }: NextPageContext) {
-  const docRef = doc(firestore, "documents", id as string);
+  const docRef = doc(firestore, COLLECTION_NAME, id as string);
   const docSnap = await getDoc(docRef);
 
   // If the document does not exist we navigate away from this page

@@ -1,2 +1,2 @@
-export type { Note } from "./useNotesList";
+export type { Note } from "./types";
 export { default as NotesList } from "./NotesList";

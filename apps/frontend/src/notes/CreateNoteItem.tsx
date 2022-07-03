@@ -51,6 +51,7 @@ export function CreateNoteItem() {
           id="note-title"
           name="noteTitle"
           variant="standard"
+          label="Note title"
           disabled={status === NetworkStatus.PROCESSING}
         />
         <IconButton

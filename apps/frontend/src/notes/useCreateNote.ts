@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { firestore } from "../firebase";
+import { COLLECTION_NAME } from "../constants";
 import { Note, NetworkStatus } from "./types";
 
 interface UseCreateNote {
@@ -25,7 +26,7 @@ export function useCreateNote(): UseCreateNote {
         timestamp: serverTimestamp(),
       };
 
-      await setDoc(doc(firestore, "documents", id), document);
+      await setDoc(doc(firestore, COLLECTION_NAME, id), document);
 
       setStatus(NetworkStatus.IDLE);
 

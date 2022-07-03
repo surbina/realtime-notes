@@ -2,12 +2,14 @@
   "version": "0.1.0",
   "name": "editor-project",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "integration-tests"
   ],
   "scripts": {
     "frontend:dev": "npm run dev -w frontend",
     "backend:dev": "npm run dev -w backend",
-    "dev": "run-p frontend:dev backend:dev"
+    "dev": "run-p frontend:dev backend:dev",
+    "test:e2e": "npm run test -w integration-tests"
   },
   "resolutions": {
     "react": "^17.0.2",

@@ -1,5 +1,6 @@
 import { HocuspocusProvider } from "@hocuspocus/provider";
 import { useState, useEffect } from "react";
+import { API_URL } from "./constants";
 
 interface UseHocuspocusProps {
   name: string;
@@ -18,7 +19,7 @@ export function useHocuspocus({ name }: UseHocuspocusProps): UseHocuspocus {
 
   useEffect(() => {
     const newInstance = new HocuspocusProvider({
-      url: "ws://127.0.0.1:3001",
+      url: API_URL,
       name: name as string,
       onConnect: () => setIsConnected(true),
       onDisconnect: () => setIsConnected(false),
