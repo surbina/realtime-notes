@@ -4,17 +4,15 @@ import Tooltip from "@mui/material/Tooltip";
 
 // Put this at the start and end of an inline component to work around this Chromium bug:
 // https://bugs.chromium.org/p/chromium/issues/detail?id=1249405
-const InlineChromiumBugfix = () => (
-  <span contentEditable={false} style={{ fontSize: 0 }}>
-    ${String.fromCodePoint(160) /* Non-breaking space */}
-  </span>
-);
+function InlineChromiumBugfix() {
+  return (
+    <span contentEditable={false} style={{ fontSize: 0 }}>
+      ${String.fromCodePoint(160) /* Non-breaking space */}
+    </span>
+  );
+}
 
-const LinkComponent = ({
-  attributes,
-  children,
-  element,
-}: RenderElementProps) => {
+function LinkComponent({ attributes, children, element }: RenderElementProps) {
   const selected = useSelected();
   const url = (element as Link).url;
 
@@ -38,7 +36,7 @@ const LinkComponent = ({
       </a>
     </Tooltip>
   );
-};
+}
 
 export function Element({ element, attributes, children }: RenderElementProps) {
   switch (element.type) {

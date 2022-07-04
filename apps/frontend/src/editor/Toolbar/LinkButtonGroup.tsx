@@ -62,50 +62,36 @@ export function LinkButtonGroup({
         aria-label="Link"
         value={isLinkActive ? activeValue : []}
       >
-        <Tooltip title="Link">
-          <ToggleButton
-            value="link"
-            aria-label="insert link"
-            onMouseDown={(event) => {
-              event.preventDefault();
+        <ToggleButton
+          value="link"
+          aria-label="insert link"
+          onMouseDown={(event) => {
+            event.preventDefault();
 
-              if (isLinkActive) {
-                onSelectLink();
-              }
+            if (isLinkActive) {
+              onSelectLink();
+            }
 
-              setAnchorEl(event.currentTarget);
-            }}
-          >
+            setAnchorEl(event.currentTarget);
+          }}
+        >
+          <Tooltip title="Link">
             <LinkIcon />
-          </ToggleButton>
-        </Tooltip>
-        {/* Wrapping a disabled button in a Tooltip shows a warning in the console :( */}
-        {isLinkActive ? (
-          <Tooltip title="Unlink">
-            <ToggleButton
-              value="unlink"
-              aria-label="remove link"
-              onMouseDown={(event) => {
-                event.preventDefault();
-                onRemoveLink();
-              }}
-            >
-              <LinkOffIcon />
-            </ToggleButton>
           </Tooltip>
-        ) : (
-          <ToggleButton
-            value="unlink"
-            aria-label="remove link"
-            onMouseDown={(event) => {
-              event.preventDefault();
-              onRemoveLink();
-            }}
-            disabled
-          >
+        </ToggleButton>
+        <ToggleButton
+          value="unlink"
+          aria-label="remove link"
+          onMouseDown={(event) => {
+            event.preventDefault();
+            onRemoveLink();
+          }}
+          disabled={!isLinkActive}
+        >
+          <Tooltip title="Unlink">
             <LinkOffIcon />
-          </ToggleButton>
-        )}
+          </Tooltip>
+        </ToggleButton>
       </ButtonGroup>
       <Popover
         id={id}

@@ -2,7 +2,7 @@ import { Editor } from "slate";
 import isUrl from "is-url";
 import { wrapLink, isLinkActive } from "./helpers";
 
-export const withLinks = (editor: Editor): Editor => {
+export function withLinks(editor: Editor): Editor {
   const { insertData, insertText, isInline } = editor;
 
   editor.isInline = (element) => element.type === "link" || isInline(element);
@@ -28,4 +28,4 @@ export const withLinks = (editor: Editor): Editor => {
   };
 
   return editor;
-};
+}

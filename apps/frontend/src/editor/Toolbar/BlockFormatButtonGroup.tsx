@@ -34,33 +34,33 @@ export function BlockFormatButtonGroup({
       onChange={handleBlockFormatChange}
       aria-label="Block formatting"
     >
-      <Tooltip title="Quote">
-        <ToggleButton
-          value="block-quote"
-          aria-label="block quote"
-          onMouseDown={handleMouseDown}
-        >
+      <ToggleButton
+        value="block-quote"
+        aria-label="block quote"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Quote">
           <FormatQuoteIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Numbered list">
-        <ToggleButton
-          value="numbered-list"
-          aria-label="numbered list"
-          onMouseDown={handleMouseDown}
-        >
+        </Tooltip>
+      </ToggleButton>
+      <ToggleButton
+        value="numbered-list"
+        aria-label="numbered list"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Numbered list">
           <FormatListNumberedIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Bulleted list">
-        <ToggleButton
-          value="bulleted-list"
-          aria-label="bulleted list"
-          onMouseDown={handleMouseDown}
-        >
+        </Tooltip>
+      </ToggleButton>
+      <ToggleButton
+        value="bulleted-list"
+        aria-label="bulleted list"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Bulleted list">
           <FormatListBulletedIcon />
-        </ToggleButton>
-      </Tooltip>
+        </Tooltip>
+      </ToggleButton>
     </ButtonGroup>
   );
 }

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.23.1",
+    "@types/uuid": "^8.3.4",
     "firebase-admin": "^11.0.0",
     "uuid": "^8.3.2"
   }

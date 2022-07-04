@@ -33,7 +33,7 @@ interface EditorContentProps {
   instance: HocuspocusProvider;
 }
 
-const EditorContent = ({ instance }: EditorContentProps) => {
+function EditorContent({ instance }: EditorContentProps) {
   const [value, setValue] = useState<Descendant[]>([]);
 
   const editor = useMemo(() => {
@@ -103,12 +103,12 @@ const EditorContent = ({ instance }: EditorContentProps) => {
       </Slate>
     </Paper>
   );
-};
+}
 
-export const Editor = ({ instance }: Partial<EditorContentProps>) => {
+export function Editor({ instance }: Partial<EditorContentProps>) {
   if (!instance) {
     return null;
   }
 
   return <EditorContent instance={instance} />;
-};
+}

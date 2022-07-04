@@ -33,42 +33,42 @@ export function TextFormatButtonGroup({
       onChange={handleTextFormatChange}
       aria-label="Text formatting"
     >
-      <Tooltip title="Bold">
-        <ToggleButton
-          value="bold"
-          aria-label="bold"
-          onMouseDown={handleMouseDown}
-        >
+      <ToggleButton
+        value="bold"
+        aria-label="bold"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Bold">
           <FormatBoldIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Italic">
-        <ToggleButton
-          value="italic"
-          aria-label="italic"
-          onMouseDown={handleMouseDown}
-        >
+        </Tooltip>
+      </ToggleButton>
+      <ToggleButton
+        value="italic"
+        aria-label="italic"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Italic">
           <FormatItalicIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Underline">
-        <ToggleButton
-          value="underline"
-          aria-label="underlined"
-          onMouseDown={handleMouseDown}
-        >
+        </Tooltip>
+      </ToggleButton>
+      <ToggleButton
+        value="underline"
+        aria-label="underlined"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Underline">
           <FormatUnderlinedIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="Code">
-        <ToggleButton
-          value="code"
-          aria-label="code"
-          onMouseDown={handleMouseDown}
-        >
+        </Tooltip>
+      </ToggleButton>
+      <ToggleButton
+        value="code"
+        aria-label="code"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="Code">
           <FormatCodeIcon />
-        </ToggleButton>
-      </Tooltip>
+        </Tooltip>
+      </ToggleButton>
     </ButtonGroup>
   );
 }

@@ -1,7 +1,7 @@
 import { Editor, Transforms } from "slate";
 import { deserialize } from "./deserialize";
 
-export const withHtml = (editor: Editor): Editor => {
+export function withHtml(editor: Editor): Editor {
   const { insertData, isInline } = editor;
 
   editor.isInline = (element) => element.type === "link" || isInline(element);
@@ -20,4 +20,4 @@ export const withHtml = (editor: Editor): Editor => {
   };
 
   return editor;
-};
+}

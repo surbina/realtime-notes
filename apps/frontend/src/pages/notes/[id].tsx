@@ -8,7 +8,7 @@ import { useHocuspocus } from "../../useHocuspocus";
 import { Editor } from "../../editor";
 import { firestore } from "../../firebase";
 
-const Home: NextPage = () => {
+const NotePage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const { instance } = useHocuspocus({ name: id as string });
@@ -41,4 +41,4 @@ export async function getServerSideProps({
   };
 }
 
-export default Home;
+export default NotePage;

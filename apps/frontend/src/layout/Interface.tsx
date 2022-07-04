@@ -17,7 +17,7 @@ interface InterfaceProps {
   initialNotes: Array<Note>;
 }
 
-const Interface = ({ children, initialNotes }: InterfaceProps) => {
+export function Interface({ children, initialNotes }: InterfaceProps) {
   const router = useRouter();
   const { id } = router.query;
   const activeNoteId = String(id);
@@ -66,6 +66,4 @@ const Interface = ({ children, initialNotes }: InterfaceProps) => {
       </Box>
     </Box>
   );
-};
-
-export default Interface;
+}

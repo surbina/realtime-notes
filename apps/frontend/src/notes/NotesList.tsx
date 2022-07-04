@@ -10,15 +10,13 @@ export interface NotesListProps {
   initialNotes: Array<Note>;
 }
 
-const NotesList: React.FC<NotesListProps> = ({
-  activeNoteId,
-  initialNotes,
-}) => {
+export function NotesList({ activeNoteId, initialNotes }: NotesListProps) {
   const notesList = useNotesList(initialNotes);
 
   return (
     <nav>
       <List>
+        <CreateNoteItem />
         {notesList?.map((note) => (
           <NoteItem
             key={note.name}
@@ -27,10 +25,7 @@ const NotesList: React.FC<NotesListProps> = ({
             isActive={note.name === activeNoteId}
           />
         ))}
-        <CreateNoteItem />
       </List>
     </nav>
   );
-};
-
-export default NotesList;
+}

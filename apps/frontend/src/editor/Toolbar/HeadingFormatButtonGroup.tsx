@@ -32,24 +32,24 @@ export function HeadingFormatButtonGroup({
       onChange={handleHeadingFormatChange}
       aria-label="Heading formatting"
     >
-      <Tooltip title="H1">
-        <ToggleButton
-          value="heading-one"
-          aria-label="heading one"
-          onMouseDown={handleMouseDown}
-        >
+      <ToggleButton
+        value="heading-one"
+        aria-label="heading one"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="H1">
           <FormatTitleIcon />
-        </ToggleButton>
-      </Tooltip>
-      <Tooltip title="H2">
-        <ToggleButton
-          value="heading-two"
-          aria-label="heading two"
-          onMouseDown={handleMouseDown}
-        >
+        </Tooltip>
+      </ToggleButton>
+      <ToggleButton
+        value="heading-two"
+        aria-label="heading two"
+        onMouseDown={handleMouseDown}
+      >
+        <Tooltip title="H2">
           <FormatTitleIcon fontSize="small" />
-        </ToggleButton>
-      </Tooltip>
+        </Tooltip>
+      </ToggleButton>
     </ButtonGroup>
   );
 }
