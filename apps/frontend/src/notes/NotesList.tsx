@@ -16,7 +16,6 @@ export function NotesList({ activeNoteId, initialNotes }: NotesListProps) {
   return (
     <nav>
       <List>
-        <CreateNoteItem />
         {notesList?.map((note) => (
           <NoteItem
             key={note.name}
@@ -25,6 +24,7 @@ export function NotesList({ activeNoteId, initialNotes }: NotesListProps) {
             isActive={note.name === activeNoteId}
           />
         ))}
+        <CreateNoteItem />
       </List>
     </nav>
   );
