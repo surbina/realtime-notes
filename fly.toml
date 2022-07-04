@@ -1,0 +1,43 @@
+# fly.toml file generated for realtime-notes on 2022-07-04T00:57:04-03:00
+
+app = "realtime-notes"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  NEXT_PUBLIC_API_PORT = "3001"
+  NEXT_PUBLIC_ENVIRONMENT = "prod"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 3001
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "3001"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

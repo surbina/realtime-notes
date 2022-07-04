@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "editor-project",
+  "name": "realtime-notes",
   "workspaces": [
     "apps/*",
     "integration-tests"
@@ -8,6 +8,8 @@
   "scripts": {
     "frontend:dev": "npm run dev -w frontend",
     "backend:dev": "npm run dev -w backend",
+    "frontend:build": "npm run build -w frontend",
+    "backend:build": "npm run build -w backend",
     "dev": "run-p frontend:dev backend:dev",
     "test:e2e": "npm run test -w integration-tests"
   },
