@@ -20,7 +20,7 @@ interface ItemProps {
 
 export function Item({ id, title, isActive, onEdit }: ItemProps) {
   return (
-    <Link href={`/notes/${id}`}>
+    <Link href={`/notes/${id}`} shallow>
       <ListItem
         secondaryAction={
           <IconButton

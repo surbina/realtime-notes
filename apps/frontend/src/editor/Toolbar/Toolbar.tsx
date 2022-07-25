@@ -67,58 +67,6 @@ export function Toolbar() {
     isBlockActive(editor, format)
   );
 
-  const handleTextFormatChange = (newTextFormats: Array<keyof CustomText>) => {
-    const currentTextFormatsSet = new Set(currentTextFormats);
-    const newTextFormatsSet = new Set(newTextFormats);
-
-    const formatsToRemove = [...currentTextFormatsSet].filter(
-      (format) => !newTextFormatsSet.has(format)
-    );
-    const formatsToAdd = [...newTextFormatsSet].filter(
-      (format) => !currentTextFormatsSet.has(format)
-    );
-
-    [...formatsToRemove, ...formatsToAdd].forEach((format) => {
-      toggleMark(editor, format);
-    });
-  };
-
-  const handleHeadingFormatChange = (
-    newHeadingFormats: Array<HeadingType["type"]>
-  ) => {
-    const currentHeadingFormatsSet = new Set(currentHeadingFormats);
-    const newHeadingFormatsSet = new Set(newHeadingFormats);
-
-    const formatsToRemove = [...currentHeadingFormatsSet].filter(
-      (format) => !newHeadingFormatsSet.has(format)
-    );
-    const formatsToAdd = [...newHeadingFormatsSet].filter(
-      (format) => !currentHeadingFormatsSet.has(format)
-    );
-
-    [...formatsToRemove, ...formatsToAdd].forEach((format) => {
-      toggleBlock(editor, format);
-    });
-  };
-
-  const handleBlockFormatChange = (
-    newBlockFormats: Array<BlockType["type"]>
-  ) => {
-    const currentBlockFormatsSet = new Set(currentBlockFormats);
-    const newBlockFormatsSet = new Set(newBlockFormats);
-
-    const formatsToRemove = [...currentBlockFormatsSet].filter(
-      (format) => !newBlockFormatsSet.has(format)
-    );
-    const formatsToAdd = [...newBlockFormatsSet].filter(
-      (format) => !currentBlockFormatsSet.has(format)
-    );
-
-    [...formatsToRemove, ...formatsToAdd].forEach((format) => {
-      toggleBlock(editor, format);
-    });
-  };
-
   const handleSelectLink = () => {
     selectCurrentActiveLink(editor);
   };
@@ -147,17 +95,17 @@ export function Toolbar() {
     >
       <TextFormatButtonGroup
         textFormats={currentTextFormats}
-        onChange={handleTextFormatChange}
+        onChange={(format) => toggleMark(editor, format)}
       />
       <ToolbarDivider />
       <HeadingFormatButtonGroup
         headingFormats={currentHeadingFormats}
-        onChange={handleHeadingFormatChange}
+        onChange={(format) => toggleBlock(editor, format)}
       />
       <ToolbarDivider />
       <BlockFormatButtonGroup
         blockFormats={currentBlockFormats}
-        onChange={handleBlockFormatChange}
+        onChange={(format) => toggleBlock(editor, format)}
       />
       <ToolbarDivider />
       <LinkButtonGroup

@@ -9,35 +9,31 @@ import { BlockQuote, NumberedList, BulletedList } from "../types";
 
 type BlockTypes = BlockQuote | NumberedList | BulletedList;
 
-const handleMouseDown = (e: MouseEvent<HTMLElement>) => e.preventDefault();
-
 interface BlockFormatButtonGroupProps {
   blockFormats: Array<BlockTypes["type"]>;
-  onChange: (newFormats: Array<BlockTypes["type"]>) => void;
+  onChange: (formatToChange: BlockTypes["type"]) => void;
 }
 
 export function BlockFormatButtonGroup({
   blockFormats,
   onChange,
 }: BlockFormatButtonGroupProps) {
-  const handleBlockFormatChange = (
-    _event: MouseEvent<HTMLElement>,
-    newBlockFormats: Array<BlockTypes["type"]>
-  ) => {
-    onChange(newBlockFormats);
-  };
+  const getMouseDownHandler =
+    (format: BlockTypes["type"]) => (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      onChange(format);
+    };
 
   return (
     <ButtonGroup
       size="small"
       value={blockFormats}
-      onChange={handleBlockFormatChange}
       aria-label="Block formatting"
     >
       <ToggleButton
         value="block-quote"
         aria-label="block quote"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("block-quote")}
       >
         <Tooltip title="Quote">
           <FormatQuoteIcon />
@@ -46,7 +42,7 @@ export function BlockFormatButtonGroup({
       <ToggleButton
         value="numbered-list"
         aria-label="numbered list"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("numbered-list")}
       >
         <Tooltip title="Numbered list">
           <FormatListNumberedIcon />
@@ -55,7 +51,7 @@ export function BlockFormatButtonGroup({
       <ToggleButton
         value="bulleted-list"
         aria-label="bulleted list"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("bulleted-list")}
       >
         <Tooltip title="Bulleted list">
           <FormatListBulletedIcon />

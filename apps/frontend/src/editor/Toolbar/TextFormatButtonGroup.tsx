@@ -8,35 +8,27 @@ import Tooltip from "@mui/material/Tooltip";
 import { ButtonGroup } from "./ButtonGroup";
 import { CustomText } from "../types";
 
-const handleMouseDown = (e: MouseEvent<HTMLElement>) => e.preventDefault();
-
 interface TextFormatButtonGroupProps {
   textFormats: Array<keyof CustomText>;
-  onChange: (newFormats: Array<keyof CustomText>) => void;
+  onChange: (formatToChange: keyof CustomText) => void;
 }
 
 export function TextFormatButtonGroup({
   textFormats,
   onChange,
 }: TextFormatButtonGroupProps) {
-  const handleTextFormatChange = (
-    _event: MouseEvent<HTMLElement>,
-    newTextFormats: Array<keyof CustomText>
-  ) => {
-    onChange(newTextFormats);
-  };
+  const getMouseDownHandler =
+    (format: keyof CustomText) => (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      onChange(format);
+    };
 
   return (
-    <ButtonGroup
-      size="small"
-      value={textFormats}
-      onChange={handleTextFormatChange}
-      aria-label="Text formatting"
-    >
+    <ButtonGroup size="small" value={textFormats} aria-label="Text formatting">
       <ToggleButton
         value="bold"
         aria-label="bold"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("bold")}
       >
         <Tooltip title="Bold">
           <FormatBoldIcon />
@@ -45,7 +37,7 @@ export function TextFormatButtonGroup({
       <ToggleButton
         value="italic"
         aria-label="italic"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("italic")}
       >
         <Tooltip title="Italic">
           <FormatItalicIcon />
@@ -54,7 +46,7 @@ export function TextFormatButtonGroup({
       <ToggleButton
         value="underline"
         aria-label="underlined"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("underline")}
       >
         <Tooltip title="Underline">
           <FormatUnderlinedIcon />
@@ -63,7 +55,7 @@ export function TextFormatButtonGroup({
       <ToggleButton
         value="code"
         aria-label="code"
-        onMouseDown={handleMouseDown}
+        onMouseDown={getMouseDownHandler("code")}
       >
         <Tooltip title="Code">
           <FormatCodeIcon />
